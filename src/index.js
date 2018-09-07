@@ -2,13 +2,14 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import 'bootstrap';
-import 'bootstrap/scss/bootstrap.scss';
+import './index.sass';
 
 import App from './components/App';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const rootElement = document.querySelector('#root');
     render(
         <App />,
-        document.querySelector('#container')
+        rootElement
     );
 });

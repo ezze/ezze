@@ -95,6 +95,9 @@ export default {
             template: htmlTemplate,
             title: 'Ezze',
             meta: [{
+                name: 'viewport',
+                content: 'width=device-width,initial-scale=1,shrink-to-fit=no'
+            }, {
                 'http-equiv': 'Cache-Control',
                 content: 'no-cache, no-store, must-revalidate'
             }, {
@@ -104,7 +107,7 @@ export default {
                 'http-equiv': 'Expires',
                 content: '0'
             }],
-            appMountId: 'container',
+            appMountId: 'root',
             minify: {
                 collapseWhitespace: mode === 'production'
             }
