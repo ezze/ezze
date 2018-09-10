@@ -43,6 +43,10 @@ export default {
         contentBase: path.resolve(__dirname, 'dist'),
         port: PORT
     },
+    context: path.resolve(__dirname, 'src'),
+    entry: {
+        index: ['@babel/polyfill', './index.js']
+    },
     module: {
         rules: [{
             test: /\.js$/,
@@ -74,6 +78,18 @@ export default {
             },
             include: [
                 path.resolve(__dirname, 'src/fonts')
+            ]
+        }, {
+            test: /\.jpg$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    name: 'img/[1].[hash:6].[ext]',
+                    regExp: '([^./]+)\.[^.]+$'
+                }
+            },
+            include: [
+                path.resolve(__dirname, 'src/img')
             ]
         }]
     },

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Intro from './Intro';
+
 const App = () => {
     return (
         <div className="application">
@@ -31,15 +33,9 @@ const App = () => {
                     <h1 className="display-3">Welcome!</h1>
                     <p className="lead">My name is Dmitriy Pushkov. I'm a full-stack web developer experienced in
                     JavaScript (both browser and Node.js), PHP, React, HTML5, CSS and many more.</p>
-                    <div className="video">
-                        <div className="embed-responsive embed-responsive-16by9">
-                            <iframe src="https://www.youtube.com/embed/vbsHBEq2OiE?&vq=hd1080" frameBorder="0"
-                                allow="autoplay; encrypted-media" allowFullScreen>
-                            </iframe>
-                        </div>
-                    </div>
                 </div>
             </div>
+            <Intro />
             <div className="container">
                 <div className="gap"></div>
                 <h1 className="display-4 text-center">Core skills</h1>
