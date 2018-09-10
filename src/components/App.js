@@ -41,12 +41,14 @@ const App = () => {
                 </div>
             </div>
             <div className="container">
+                <div className="gap"></div>
                 <h1 className="display-4 text-center">Core skills</h1>
+                <div className="gap-half"></div>
                 <div className="row">
                     <div className="col-lg">
                         <h3>JavaScript</h3>
                         <ul>
-                            <li>Node.js, Sequelize ORM</li>
+                            <li>Node.js (Koa, Express, Sequelize ORM)</li>
                             <li>ES6, promises</li>
                             <li>React, Redux</li>
                             <li>Backbone, Marionette</li>
@@ -76,15 +78,16 @@ const App = () => {
                         </ul>
                     </div>
                 </div>
+                <div className="gap-half"></div>
                 <div className="row">
                     <div className="col-lg">
                         <h3>Geo</h3>
                         <ul>
-                            <li>GeoServer, MapServer</li>
                             <li>Cesium, Leaflet, OpenLayers</li>
                             <li>Yandex Maps API, Google Maps API</li>
                             <li>GDAL</li>
-                            <li>QGIS</li>
+                            <li>SGP4, QGIS</li>
+                            <li>GeoServer, MapServer, WMS</li>
                         </ul>
                     </div>
                     <div className="col-lg">
@@ -106,7 +109,9 @@ const App = () => {
                         </ul>
                     </div>
                 </div>
+                <div className="gap"></div>
                 <h1 className="display-4 text-center">Projects</h1>
+                <div className="gap-half"></div>
                 <div className="row">
                     <div className="col-lg">
                         <h3>GeoPort & GeoMonitor</h3>
@@ -125,6 +130,7 @@ const App = () => {
                         </div>
                     </div>
                 </div>
+                <div className="gap-half"></div>
                 <div className="row">
                     <div className="col-lg">
                         <h3>Kitgeo Planner</h3>
@@ -143,6 +149,7 @@ const App = () => {
                         </div>
                     </div>
                 </div>
+                <div className="gap"></div>
             </div>
         </div>
     );

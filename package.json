@@ -28,7 +28,8 @@
     "jquery": "^3.3.1",
     "popper.js": "^1.14.4",
     "react": "^16.5.0",
-    "react-dom": "^16.5.0"
+    "react-dom": "^16.5.0",
+    "three": "^0.96.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -39,6 +40,7 @@
     "babel-loader": "^8.0.2",
     "css-loader": "^1.0.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
     "html-webpack-template": "^6.2.0",
     "node-sass": "^4.9.3",

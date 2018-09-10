@@ -63,7 +63,19 @@ export default {
                 path.resolve(__dirname, 'src'),
                 path.resolve(__dirname, 'node_modules/bootstrap/scss')
             ]
-        },]
+        }, {
+            test: /\.(eot|svg|ttf|woff2?)$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    name: 'fonts/[1].[hash:6].[ext]',
+                    regExp: '([^./]+)\.[^.]+$'
+                }
+            },
+            include: [
+                path.resolve(__dirname, 'src/fonts')
+            ]
+        }]
     },
     optimization: {
         splitChunks: {
