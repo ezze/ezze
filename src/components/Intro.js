@@ -58,7 +58,7 @@ class Intro extends Component {
     }
 
     update() {
-        this.globe.rotation.y -= 0.01;
+        this.globe.rotation.y += 0.01;
         this.renderer.render(this.scene, this.camera);
         requestAnimationFrame(this.update);
     }
@@ -88,6 +88,7 @@ async function createGlobe() {
     });
     const mesh = new THREE.Mesh(sphere, material);
     globe.add(mesh);
+    globe.rotation.y = Math.PI;
     globe.position.z = -300;
     return Promise.resolve(globe);
 }
