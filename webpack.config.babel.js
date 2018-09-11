@@ -47,6 +47,10 @@ export default {
     entry: {
         index: ['@babel/polyfill', './index.js']
     },
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'js/[name].' + (mode === 'development' ? '' : '[chunkhash:6].') + 'js'
+    },
     module: {
         rules: [{
             test: /\.js$/,

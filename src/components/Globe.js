@@ -3,17 +3,17 @@ import * as THREE from 'three';
 
 import earthTextureUrl from '../img/earth.jpg';
 
-class Intro extends Component {
+class Globe extends Component {
     constructor() {
         super();
-        this.containerRef = React.createRef();
+        this.globeRef = React.createRef();
         this.update = this.update.bind(this);
         this.onWindowResize = this.onWindowResize.bind(this);
     }
 
     componentDidMount() {
         const renderer = this.renderer = new THREE.WebGLRenderer();
-        this.containerRef.current.appendChild(renderer.domElement);
+        this.globeRef.current.appendChild(renderer.domElement);
 
         const canvas = this.renderer.domElement;
         const width = canvas.offsetWidth;
@@ -46,7 +46,7 @@ class Intro extends Component {
     }
 
     updateSize() {
-        const container = this.containerRef.current;
+        const container = this.globeRef.current;
         const width = container.offsetWidth;
         const { height } = this.getSize();
         this.renderer.setSize(width, height);
@@ -65,9 +65,7 @@ class Intro extends Component {
 
     render() {
         return (
-            <div className="intro">
-                <div className="container" ref={this.containerRef}></div>
-            </div>
+            <div className="globe" ref={this.globeRef}></div>
         );
     }
 
@@ -100,4 +98,4 @@ function loadEarthTexture() {
     });
 }
 
-export default Intro;
+export default Globe;

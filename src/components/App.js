@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Intro from './Intro';
+import Globe from './Globe';
 
 const App = () => {
     return (
@@ -35,7 +35,7 @@ const App = () => {
                     JavaScript (both browser and Node.js), PHP, React, HTML5, CSS and many more.</p>
                 </div>
             </div>
-            <Intro />
+            <Globe />
             <div className="container">
                 <div className="gap"></div>
                 <h1 className="display-4 text-center">Core skills</h1>
