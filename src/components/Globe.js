@@ -9,12 +9,14 @@ import starsTextureUrl from '../img/stars.png';
 const globeRadius = 120;
 const globeWidthSegments = 50;
 const globeHeightSegments = 50;
-const globeShift = 0.005;
+const globeEclipticAngle = Math.PI / 180 * 23.5;
+const globeRotationStep = 0.005;
+const globeRotationAxis = new THREE.Vector3(-Math.sin(globeEclipticAngle), Math.cos(globeEclipticAngle));
 
 const starsRadius = 500;
 const starsWidthSegments = 50;
 const starsHeightSegments = 50;
-const starsShift = 0.0005;
+const starsRotationStep = 0.0005;
 
 const cameraFov = 45;
 const cameraNear = 0.1;
@@ -59,6 +61,10 @@ class Globe extends Component {
         ]).then(objects => {
             const stars = this.stars = objects[0];
             const globe = this.globe = objects[1];
+
+            globe.rotation.y = Math.PI;
+            //globe.rotation.z = globeEclipticAngle;
+
             scene.add(globe);
             scene.add(stars);
             this.lastFrameTime = Date.now();
@@ -92,8 +98,9 @@ class Globe extends Component {
         if (elapsed > fpsInterval) {
             this.lastFrameTime = now - (elapsed % fpsInterval);
 
-            this.globe.rotation.y += globeShift;
-            this.stars.rotation.y += starsShift;
+            //this.globe.rotation.y += globeRotationStep;
+            this.globe.rotateOnAxis(globeRotationAxis, globeRotationStep);
+            this.stars.rotation.y += starsRotationStep;
             this.renderer.render(this.scene, this.camera);
         }
     }
@@ -121,7 +128,6 @@ async function createGlobe() {
     });
     const mesh = new THREE.Mesh(sphere, material);
     globe.add(mesh);
-    globe.rotation.y = Math.PI;
     return Promise.resolve(globe);
 }
 
