@@ -21,7 +21,7 @@ const starsHeightSegments = 50;
 const starsRotationStep = 0.0005;
 
 const satelliteScale = 8;
-const satelliteOrbitRadius = 200;
+const satelliteOrbitRadius = 170;
 const satelliteVerticalShift = 50;
 const satelliteRotationStep = 0.02;
 
