@@ -35,7 +35,9 @@ const App = () => {
                     JavaScript (both browser and Node.js), PHP, React, HTML5, CSS and many more.</p>
                 </div>
             </div>
+            <div className="restrictor"></div>
             <Globe />
+            <div className="restrictor"></div>
             <div className="container">
                 <div className="gap"></div>
                 <h1 className="display-4 text-center">Core skills</h1>
@@ -45,10 +47,10 @@ const App = () => {
                         <h3>JavaScript</h3>
                         <ul>
                             <li>Node.js (Koa, Express, Sequelize ORM)</li>
-                            <li>ES6, promises</li>
                             <li>React, Redux</li>
                             <li>Backbone, Marionette</li>
                             <li>Electron</li>
+                            <li>ES6, promises</li>
                             <li>Unit testing (Mocha, Chai)</li>
                         </ul>
                     </div>
@@ -66,7 +68,7 @@ const App = () => {
                     <div className="col-lg">
                         <h3>HTML & CSS</h3>
                         <ul>
-                            <li>HTML5 canvas</li>
+                            <li>HTML5, WebGL</li>
                             <li>Adaptive layout</li>
                             <li>Flexbox</li>
                             <li>Twitter Bootstrap, Bulma</li>

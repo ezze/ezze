@@ -95,6 +95,18 @@ export default {
             include: [
                 path.resolve(__dirname, 'src/img')
             ]
+        }, {
+            test: /\.gltf$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    name: 'models/[1].[hash:6].[ext]',
+                    regExp: '([^./]+)\.[^.]+$'
+                }
+            },
+            include: [
+                path.resolve(__dirname, 'src/models')
+            ]
         }]
     },
     optimization: {

@@ -2,26 +2,37 @@ import Promise from 'bluebird';
 
 import React, { Component } from 'react';
 import * as THREE from 'three';
+import GLTFLoader from 'three-gltf-loader';
 
 import earthTextureUrl from '../img/earth.jpg';
 import starsTextureUrl from '../img/stars.png';
+import satelliteModelUrl from '../models/satellite.gltf';
 
 const globeRadius = 120;
 const globeWidthSegments = 50;
 const globeHeightSegments = 50;
 const globeEclipticAngle = Math.PI / 180 * 23.5;
 const globeRotationStep = 0.005;
-const globeRotationAxis = new THREE.Vector3(-Math.sin(globeEclipticAngle), Math.cos(globeEclipticAngle));
+const globeRotationAxis = new THREE.Vector3(Math.sin(globeEclipticAngle), Math.cos(globeEclipticAngle), 0);
 
 const starsRadius = 500;
 const starsWidthSegments = 50;
 const starsHeightSegments = 50;
 const starsRotationStep = 0.0005;
 
+const satelliteScale = 8;
+const satelliteOrbitRadius = 200;
+const satelliteVerticalShift = 50;
+const satelliteRotationStep = 0.02;
+
 const cameraFov = 45;
 const cameraNear = 0.1;
 const cameraFar = 1000;
 const cameraDistance = 400;
+
+const lightX = 240;
+const lightY = 0;
+const lightZ = 300;
 
 const fps = 30;
 const fpsInterval = 1000 / fps;
@@ -51,22 +62,26 @@ class Globe extends Component {
         camera.position.set(0, 0, cameraDistance);
         scene.add(camera);
 
-        const light = new THREE.DirectionalLight(0xffffff, 1.5);
-        light.position.set(240, 0, 300);
+        const light = new THREE.DirectionalLight(0xffffff, 2);
+        light.position.set(lightX, lightY, lightZ);
         scene.add(light);
 
         Promise.all([
             createStars(),
             createGlobe(),
+            createSatellite(),
         ]).then(objects => {
             const stars = this.stars = objects[0];
             const globe = this.globe = objects[1];
-
-            globe.rotation.y = Math.PI;
-            //globe.rotation.z = globeEclipticAngle;
-
+            const satellite = this.satellite = objects[2];
+            globe.rotateY(Math.PI);
+            globe.rotateZ(globeEclipticAngle);
+            satellite.position.set(0, satelliteVerticalShift, satelliteOrbitRadius);
+            satellite.scale.set(satelliteScale, satelliteScale, satelliteScale);
+            this.updateSatelliteOrientation();
             scene.add(globe);
             scene.add(stars);
+            scene.add(satellite);
             this.lastFrameTime = Date.now();
             requestAnimationFrame(this.update);
         }).catch(e => console.error(e));
@@ -97,12 +112,24 @@ class Globe extends Component {
         const elapsed = now - this.lastFrameTime;
         if (elapsed > fpsInterval) {
             this.lastFrameTime = now - (elapsed % fpsInterval);
-
-            //this.globe.rotation.y += globeRotationStep;
-            this.globe.rotateOnAxis(globeRotationAxis, globeRotationStep);
             this.stars.rotation.y += starsRotationStep;
+            this.globe.rotateOnWorldAxis(globeRotationAxis, globeRotationStep);
+            const { satellite } = this;
+            const angle = Math.atan2(satellite.position.x, satellite.position.z) + satelliteRotationStep;
+            satellite.position.set(
+                satelliteOrbitRadius * Math.sin(angle),
+                satelliteVerticalShift,
+                satelliteOrbitRadius * Math.cos(angle)
+            );
+            this.updateSatelliteOrientation();
             this.renderer.render(this.scene, this.camera);
         }
+    }
+
+    updateSatelliteOrientation() {
+        const { satellite } = this;
+        satellite.lookAt(satellite.position.clone().normalize().multiplyScalar(-1));
+        satellite.rotateX(Math.PI / 2);
     }
 
     render() {
@@ -118,6 +145,19 @@ class Globe extends Component {
     }
 }
 
+async function createStars() {
+    const texture = await loadStarsTexture();
+    const stars = new THREE.Group();
+    const sphere = new THREE.SphereGeometry(starsRadius, starsWidthSegments, starsHeightSegments);
+    const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        side: THREE.BackSide
+    });
+    const mesh = new THREE.Mesh(sphere, material);
+    stars.add(mesh);
+    return Promise.resolve(stars);
+}
+
 async function createGlobe() {
     const texture = await loadEarthTexture();
     const globe = new THREE.Group();
@@ -131,17 +171,9 @@ async function createGlobe() {
     return Promise.resolve(globe);
 }
 
-async function createStars() {
-    const texture = await loadStarsTexture();
-    const stars = new THREE.Group();
-    const sphere = new THREE.SphereGeometry(starsRadius, starsWidthSegments, starsHeightSegments);
-    const material = new THREE.MeshBasicMaterial({
-        map: texture,
-        side: THREE.BackSide
-    });
-    const mesh = new THREE.Mesh(sphere, material);
-    stars.add(mesh);
-    return Promise.resolve(stars);
+async function createSatellite() {
+    const model = await loadSatelliteModel();
+    return Promise.resolve(model);
 }
 
 function loadTexture(url) {
@@ -157,6 +189,19 @@ function loadEarthTexture() {
 
 function loadStarsTexture() {
     return loadTexture(starsTextureUrl);
+}
+
+function loadGltfModel(url) {
+    const loader = new GLTFLoader();
+    return new Promise((resolve, reject) => {
+        loader.load(url, gltf => {
+            resolve(gltf.scene)
+        }, undefined, error => reject(error));
+    });
+}
+
+function loadSatelliteModel() {
+    return loadGltfModel(satelliteModelUrl);
 }
 
 export default Globe;
