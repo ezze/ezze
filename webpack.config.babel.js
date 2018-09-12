@@ -84,7 +84,7 @@ export default {
                 path.resolve(__dirname, 'src/fonts')
             ]
         }, {
-            test: /\.jpg$/,
+            test: /\.(jpg|png)$/,
             use: {
                 loader: 'file-loader',
                 options: {

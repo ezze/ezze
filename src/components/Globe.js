@@ -1,7 +1,25 @@
+import Promise from 'bluebird';
+
 import React, { Component } from 'react';
 import * as THREE from 'three';
 
 import earthTextureUrl from '../img/earth.jpg';
+import starsTextureUrl from '../img/stars.png';
+
+const globeRadius = 120;
+const globeWidthSegments = 50;
+const globeHeightSegments = 50;
+const globeShift = 0.005;
+
+const starsRadius = 500;
+const starsWidthSegments = 50;
+const starsHeightSegments = 50;
+const starsShift = 0.0005;
+
+const cameraFov = 45;
+const cameraNear = 0.1;
+const cameraFar = 1000;
+const cameraDistance = 400;
 
 class Globe extends Component {
     constructor() {
@@ -20,21 +38,22 @@ class Globe extends Component {
         const height = canvas.offsetHeight;
         this.renderer.setSize(width, height);
 
-        const fov = 45;
-        const aspect = width / height;
-        const near = 0.1;
-        const far = 10000;
-
-        const camera = this.camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-        camera.position.set(0, 0, 500);
+        const cameraAspect = width / height;
+        const camera = this.camera = new THREE.PerspectiveCamera(cameraFov, cameraAspect, cameraNear, cameraFar);
+        camera.position.set(0, 0, cameraDistance);
 
         const scene = this.scene = new THREE.Scene();
         scene.background = new THREE.Color(0x000);
         scene.add(camera);
 
-        createGlobe().then(globe => {
-            this.globe = globe;
+        Promise.all([
+            createStars(),
+            createGlobe(),
+        ]).then(objects => {
+            const stars = this.stars = objects[0];
+            const globe = this.globe = objects[1];
             scene.add(globe);
+            scene.add(stars);
             requestAnimationFrame(this.update);
         }).catch(e => console.error(e));
 
@@ -58,7 +77,8 @@ class Globe extends Component {
     }
 
     update() {
-        this.globe.rotation.y += 0.01;
+        this.globe.rotation.y += globeShift;
+        this.stars.rotation.y += starsShift;
         this.renderer.render(this.scene, this.camera);
         requestAnimationFrame(this.update);
     }
@@ -71,7 +91,7 @@ class Globe extends Component {
 
     onWindowResize() {
         const { width, height } = this.updateSize();
-        this.camera.aspect = width / height
+        this.camera.aspect = width / height;
         this.camera.updateProjectionMatrix();
     }
 }
@@ -79,7 +99,7 @@ class Globe extends Component {
 async function createGlobe() {
     const texture = await loadEarthTexture();
     const globe = new THREE.Group();
-    const sphere = new THREE.SphereGeometry(200, 50, 50);
+    const sphere = new THREE.SphereGeometry(globeRadius, globeWidthSegments, globeHeightSegments);
     const material = new THREE.MeshBasicMaterial({
         map: texture,
         overdraw: 0.5
@@ -87,15 +107,35 @@ async function createGlobe() {
     const mesh = new THREE.Mesh(sphere, material);
     globe.add(mesh);
     globe.rotation.y = Math.PI;
-    globe.position.z = -300;
     return Promise.resolve(globe);
 }
 
-function loadEarthTexture() {
+async function createStars() {
+    const texture = await loadStarsTexture();
+    const stars = new THREE.Group();
+    const sphere = new THREE.SphereGeometry(starsRadius, starsWidthSegments, starsHeightSegments);
+    const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        side: THREE.BackSide
+    });
+    const mesh = new THREE.Mesh(sphere, material);
+    stars.add(mesh);
+    return Promise.resolve(stars);
+}
+
+function loadTexture(url) {
     const loader = new THREE.TextureLoader();
     return new Promise((resolve, reject) => {
-        loader.load(earthTextureUrl, texture => resolve(texture), undefined, error => reject(error));
+        loader.load(url, texture => resolve(texture), undefined, error => reject(error));
     });
+}
+
+function loadEarthTexture() {
+    return loadTexture(earthTextureUrl);
+}
+
+function loadStarsTexture() {
+    return loadTexture(starsTextureUrl);
 }
 
 export default Globe;
