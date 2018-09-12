@@ -41,13 +41,17 @@ class Globe extends Component {
         const height = canvas.offsetHeight;
         this.renderer.setSize(width, height);
 
+        const scene = this.scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000);
+
         const cameraAspect = width / height;
         const camera = this.camera = new THREE.PerspectiveCamera(cameraFov, cameraAspect, cameraNear, cameraFar);
         camera.position.set(0, 0, cameraDistance);
-
-        const scene = this.scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000);
         scene.add(camera);
+
+        const light = new THREE.DirectionalLight(0xffffff, 1.5);
+        light.position.set(240, 0, 300);
+        scene.add(light);
 
         Promise.all([
             createStars(),
@@ -111,7 +115,7 @@ async function createGlobe() {
     const texture = await loadEarthTexture();
     const globe = new THREE.Group();
     const sphere = new THREE.SphereGeometry(globeRadius, globeWidthSegments, globeHeightSegments);
-    const material = new THREE.MeshBasicMaterial({
+    const material = new THREE.MeshLambertMaterial({
         map: texture,
         overdraw: 0.5
     });
