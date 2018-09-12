@@ -21,6 +21,9 @@ const cameraNear = 0.1;
 const cameraFar = 1000;
 const cameraDistance = 400;
 
+const fps = 30;
+const fpsInterval = 1000 / fps;
+
 class Globe extends Component {
     constructor() {
         super();
@@ -54,6 +57,7 @@ class Globe extends Component {
             const globe = this.globe = objects[1];
             scene.add(globe);
             scene.add(stars);
+            this.lastFrameTime = Date.now();
             requestAnimationFrame(this.update);
         }).catch(e => console.error(e));
 
@@ -77,10 +81,17 @@ class Globe extends Component {
     }
 
     update() {
-        this.globe.rotation.y += globeShift;
-        this.stars.rotation.y += starsShift;
-        this.renderer.render(this.scene, this.camera);
         requestAnimationFrame(this.update);
+
+        const now = Date.now();
+        const elapsed = now - this.lastFrameTime;
+        if (elapsed > fpsInterval) {
+            this.lastFrameTime = now - (elapsed % fpsInterval);
+
+            this.globe.rotation.y += globeShift;
+            this.stars.rotation.y += starsShift;
+            this.renderer.render(this.scene, this.camera);
+        }
     }
 
     render() {
