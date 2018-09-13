@@ -20,19 +20,26 @@ const starsWidthSegments = 50;
 const starsHeightSegments = 50;
 const starsRotationStep = 0.0005;
 
-const satelliteScale = 8;
+const satelliteScale = 5;
 const satelliteOrbitRadius = 170;
 const satelliteVerticalShift = 50;
 const satelliteRotationStep = 0.02;
 
 const cameraFov = 45;
-const cameraNear = 0.1;
+const cameraNear = 1;
 const cameraFar = 1000;
 const cameraDistance = 400;
 
-const lightX = 400;
+const cameraShadowNear = 1;
+const cameraShadowFar = 700;
+const cameraShadowTop = 250;
+const cameraShadowBottom = -250;
+const cameraShadowLeft = -250;
+const cameraShadowRight = 250;
+
+const lightX = 200;
 const lightY = 0;
-const lightZ = 200;
+const lightZ = 150;
 
 const fps = 30;
 const fpsInterval = 1000 / fps;
@@ -46,12 +53,9 @@ class Globe extends Component {
     }
 
     componentDidMount() {
-        const renderer = this.renderer = new THREE.WebGLRenderer({
-            antialias: true,
-            alpha: true
-        });
+        const renderer = this.renderer = new THREE.WebGLRenderer();
         renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.BasicShadowMap;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         this.globeRef.current.appendChild(renderer.domElement);
 
         const canvas = this.renderer.domElement;
@@ -69,10 +73,20 @@ class Globe extends Component {
 
         const light = new THREE.DirectionalLight(0xffffff, 2);
         light.castShadow = true;
+        light.shadow.camera.near = cameraShadowNear;
+        light.shadow.camera.far = cameraShadowFar;
+        light.shadow.camera.top = cameraShadowTop;
+        light.shadow.camera.bottom = cameraShadowBottom;
+        light.shadow.camera.left = cameraShadowLeft;
+        light.shadow.camera.right = cameraShadowRight;
+
         light.position.set(lightX, lightY, lightZ);
         scene.add(light);
 
         scene.add(new THREE.AmbientLight(0x888888, 0.5));
+
+        //const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
+        //scene.add(cameraHelper);
 
         Promise.all([
             createStars(),
