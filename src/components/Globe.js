@@ -23,7 +23,7 @@ const starsRotationStep = 0.0005;
 const satelliteScale = 5;
 const satelliteOrbitRadius = 170;
 const satelliteVerticalShift = 50;
-const satelliteRotationStep = 0.02;
+const satelliteRotationStep = -0.02;
 
 const cameraFov = 45;
 const cameraNear = 1;
@@ -32,10 +32,10 @@ const cameraDistance = 400;
 
 const cameraShadowNear = 1;
 const cameraShadowFar = 700;
-const cameraShadowTop = 250;
-const cameraShadowBottom = -250;
-const cameraShadowLeft = -250;
-const cameraShadowRight = 250;
+const cameraShadowTop = 300;
+const cameraShadowBottom = -300;
+const cameraShadowLeft = -300;
+const cameraShadowRight = 300;
 
 const lightX = 200;
 const lightY = 0;
