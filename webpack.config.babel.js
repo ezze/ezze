@@ -98,14 +98,26 @@ export default {
         }, {
             test: /\.gltf$/,
             use: {
-                loader: 'file-loader',
+                loader: 'gltf-loader-2',
                 options: {
-                    name: 'models/[1].[hash:6].[ext]',
+                    name: 'gltf/[1].[hash:6].[ext]',
                     regExp: '([^./]+)\.[^.]+$'
                 }
             },
             include: [
-                path.resolve(__dirname, 'src/models')
+                path.resolve(__dirname, 'src/gltf')
+            ]
+        }, {
+            test: /\.(jpg|png|bin)$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    name: 'gltf/[1].[hash:6].[ext]',
+                    regExp: '([^./]+)\.[^.]+$'
+                }
+            },
+            include: [
+                path.resolve(__dirname, 'src/gltf')
             ]
         }]
     },

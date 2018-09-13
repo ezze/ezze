@@ -6,7 +6,7 @@ import GLTFLoader from 'three-gltf-loader';
 
 import earthTextureUrl from '../img/earth.jpg';
 import starsTextureUrl from '../img/stars.png';
-import satelliteModelUrl from '../models/satellite.gltf';
+import satelliteGltf from '../gltf/satellite.gltf';
 
 const globeRadius = 120;
 const globeWidthSegments = 50;
@@ -30,9 +30,9 @@ const cameraNear = 0.1;
 const cameraFar = 1000;
 const cameraDistance = 400;
 
-const lightX = 240;
+const lightX = 400;
 const lightY = 0;
-const lightZ = 300;
+const lightZ = 200;
 
 const fps = 30;
 const fpsInterval = 1000 / fps;
@@ -62,9 +62,12 @@ class Globe extends Component {
         camera.position.set(0, 0, cameraDistance);
         scene.add(camera);
 
-        const light = new THREE.DirectionalLight(0xffffff, 2);
+        const light = new THREE.DirectionalLight(0xffffff, 1.8);
         light.position.set(lightX, lightY, lightZ);
+        light.castShadow = true;
         scene.add(light);
+
+        scene.add(new THREE.AmbientLight(0x888888, 0.2));
 
         Promise.all([
             createStars(),
@@ -78,6 +81,8 @@ class Globe extends Component {
             globe.rotateZ(globeEclipticAngle);
             satellite.position.set(0, satelliteVerticalShift, satelliteOrbitRadius);
             satellite.scale.set(satelliteScale, satelliteScale, satelliteScale);
+            globe.receiveShadow = true;
+            globe.castShadow = true;
             this.updateSatelliteOrientation();
             scene.add(globe);
             scene.add(stars);
@@ -162,8 +167,9 @@ async function createGlobe() {
     const texture = await loadEarthTexture();
     const globe = new THREE.Group();
     const sphere = new THREE.SphereGeometry(globeRadius, globeWidthSegments, globeHeightSegments);
-    const material = new THREE.MeshLambertMaterial({
+    const material = new THREE.MeshPhongMaterial({
         map: texture,
+        shininess: 0,
         overdraw: 0.5
     });
     const mesh = new THREE.Mesh(sphere, material);
@@ -195,13 +201,30 @@ function loadGltfModel(url) {
     const loader = new GLTFLoader();
     return new Promise((resolve, reject) => {
         loader.load(url, gltf => {
-            resolve(gltf.scene)
+            resolve(gltf.scene);
         }, undefined, error => reject(error));
     });
 }
 
+function parseGltfModel(contents) {
+    const loader = new GLTFLoader();
+    return new Promise((resolve, reject) => {
+        loader.parse(contents, '', gltf => {
+            gltf.scene.traverse(node => {
+                if (node instanceof THREE.Mesh) {
+                    console.log(node);
+                    node.castShadow = true;
+                    node.receiveShadow = true;
+                }
+            });
+
+            resolve(gltf.scene);
+        }, error => reject(error));
+    });
+}
+
 function loadSatelliteModel() {
-    return loadGltfModel(satelliteModelUrl);
+    return parseGltfModel(satelliteGltf);
 }
 
 export default Globe;
