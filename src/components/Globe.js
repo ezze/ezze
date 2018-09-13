@@ -46,7 +46,12 @@ class Globe extends Component {
     }
 
     componentDidMount() {
-        const renderer = this.renderer = new THREE.WebGLRenderer();
+        const renderer = this.renderer = new THREE.WebGLRenderer({
+            antialias: true,
+            alpha: true
+        });
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.BasicShadowMap;
         this.globeRef.current.appendChild(renderer.domElement);
 
         const canvas = this.renderer.domElement;
@@ -55,19 +60,19 @@ class Globe extends Component {
         this.renderer.setSize(width, height);
 
         const scene = this.scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000);
+        scene.background = new THREE.Color(0x000000);
 
         const cameraAspect = width / height;
         const camera = this.camera = new THREE.PerspectiveCamera(cameraFov, cameraAspect, cameraNear, cameraFar);
         camera.position.set(0, 0, cameraDistance);
         scene.add(camera);
 
-        const light = new THREE.DirectionalLight(0xffffff, 1.8);
-        light.position.set(lightX, lightY, lightZ);
+        const light = new THREE.DirectionalLight(0xffffff, 2);
         light.castShadow = true;
+        light.position.set(lightX, lightY, lightZ);
         scene.add(light);
 
-        scene.add(new THREE.AmbientLight(0x888888, 0.2));
+        scene.add(new THREE.AmbientLight(0x888888, 0.5));
 
         Promise.all([
             createStars(),
@@ -152,28 +157,24 @@ class Globe extends Component {
 
 async function createStars() {
     const texture = await loadStarsTexture();
-    const stars = new THREE.Group();
     const sphere = new THREE.SphereGeometry(starsRadius, starsWidthSegments, starsHeightSegments);
     const material = new THREE.MeshBasicMaterial({
         map: texture,
         side: THREE.BackSide
     });
-    const mesh = new THREE.Mesh(sphere, material);
-    stars.add(mesh);
+    const stars = new THREE.Mesh(sphere, material);
     return Promise.resolve(stars);
 }
 
 async function createGlobe() {
     const texture = await loadEarthTexture();
-    const globe = new THREE.Group();
     const sphere = new THREE.SphereGeometry(globeRadius, globeWidthSegments, globeHeightSegments);
     const material = new THREE.MeshPhongMaterial({
         map: texture,
         shininess: 0,
         overdraw: 0.5
     });
-    const mesh = new THREE.Mesh(sphere, material);
-    globe.add(mesh);
+    const globe = new THREE.Mesh(sphere, material);
     return Promise.resolve(globe);
 }
 
@@ -212,12 +213,10 @@ function parseGltfModel(contents) {
         loader.parse(contents, '', gltf => {
             gltf.scene.traverse(node => {
                 if (node instanceof THREE.Mesh) {
-                    console.log(node);
                     node.castShadow = true;
                     node.receiveShadow = true;
                 }
             });
-
             resolve(gltf.scene);
         }, error => reject(error));
     });
