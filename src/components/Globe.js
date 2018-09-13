@@ -3,6 +3,7 @@ import Promise from 'bluebird';
 import React, { Component } from 'react';
 import * as THREE from 'three';
 import GLTFLoader from 'three-gltf-loader';
+import MobileDetect from 'mobile-detect';
 
 import earthTextureUrl from '../img/earth.jpg';
 import starsTextureUrl from '../img/stars.png';
@@ -44,6 +45,8 @@ const lightZ = 150;
 const fps = 30;
 const fpsInterval = 1000 / fps;
 
+const mobileDetect = new MobileDetect(window.navigator.userAgent);
+
 class Globe extends Component {
     constructor() {
         super();
@@ -54,8 +57,11 @@ class Globe extends Component {
 
     componentDidMount() {
         const renderer = this.renderer = new THREE.WebGLRenderer();
-        renderer.shadowMap.enabled = true;
-        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        if (!mobileDetect.phone()) {
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        }
+
         this.globeRef.current.appendChild(renderer.domElement);
 
         const canvas = this.renderer.domElement;
