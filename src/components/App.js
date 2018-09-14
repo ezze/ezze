@@ -76,7 +76,6 @@ const App = () => {
                         </ul>
                     </div>
                 </div>
-                <div className="gap-half"></div>
                 <div className="row">
                     <div className="col-lg">
                         <h3>Geo</h3>
@@ -118,6 +117,7 @@ const App = () => {
                                     allow="autoplay; encrypted-media" allowFullScreen>
                             </iframe>
                         </div>
+                        <div className="gap-half"></div>
                     </div>
                     <div className="col-lg">
                         <h3>GeoPort 3D</h3>
@@ -126,9 +126,9 @@ const App = () => {
                                     allow="autoplay; encrypted-media" allowFullScreen>
                             </iframe>
                         </div>
+                        <div className="gap-half"></div>
                     </div>
                 </div>
-                <div className="gap-half"></div>
                 <div className="row">
                     <div className="col-lg">
                         <h3>Kitgeo Planner</h3>
@@ -137,6 +137,7 @@ const App = () => {
                                     allow="autoplay; encrypted-media" allowFullScreen>
                             </iframe>
                         </div>
+                        <div className="gap-half"></div>
                     </div>
                     <div className="col-lg">
                         <h3>GeoBox</h3>
@@ -145,6 +146,7 @@ const App = () => {
                                     allow="autoplay; encrypted-media" allowFullScreen>
                             </iframe>
                         </div>
+                        <div className="gap-half"></div>
                     </div>
                 </div>
                 <div className="gap"></div>
