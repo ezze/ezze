@@ -1,6 +1,7 @@
 import Promise from 'bluebird';
 
 import React, { Component } from 'react';
+import Loading from 'react-loading';
 import * as THREE from 'three';
 import GLTFLoader from 'three-gltf-loader';
 import MobileDetect from 'mobile-detect';
@@ -51,6 +52,10 @@ class Globe extends Component {
     constructor() {
         super();
         this.globeRef = React.createRef();
+        this.state = {
+            loading: true,
+            error: false
+        };
         this.update = this.update.bind(this);
         this.onWindowResize = this.onWindowResize.bind(this);
     }
@@ -113,8 +118,17 @@ class Globe extends Component {
             scene.add(stars);
             scene.add(satellite);
             this.lastFrameTime = Date.now();
+            this.setState({
+                loading: false
+            });
             requestAnimationFrame(this.update);
-        }).catch(e => console.error(e));
+        }).catch(e => {
+            this.setState({
+                loading: false,
+                error: true
+            });
+            console.error(e);
+        });
 
         window.addEventListener('resize', this.onWindowResize);
     }
@@ -163,8 +177,20 @@ class Globe extends Component {
     }
 
     render() {
+        const className = `globe${this.state.loading ? ' globe-loading' : ''}`;
+        const error = this.state.error ? (
+            <div className="globe-error">
+                <p>Unable to initialize globe visualization!</p>
+            </div>) : '';
+
         return (
-            <div className="globe" ref={this.globeRef}></div>
+            <div className={className} ref={this.globeRef}>
+                <div className="globe-loading-indicator">
+                    <p>Please wait while globe is being loaded...</p>
+                    <Loading className="globe-loading-indicator-item" type="spin" width="128" height="128" color="#fff" />
+                </div>
+                {error}
+            </div>
         );
     }
 

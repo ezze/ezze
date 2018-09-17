@@ -20,6 +20,8 @@ $jumbotron-bg: $secondary
 // Project specific variables
 $gap-size: 40px
 $globe-height: 500px
+$globe-message-top: 128px
+$loading-indicator-item-size: 64px
 
 
 // Project specific components
@@ -31,21 +33,50 @@ $globe-height: 500px
   height: $gap-size / 2
 
 
-.video
-  margin: 0 auto
-  max-width: 600px
-
-
 .restrictor
   height: 2px
   background-color: $primary
 
 
 .globe
+  position: relative
   width: 100%
   height: $globe-height
   background-color: $black
 
-  canvas
+  & > canvas
     width: 100%
     height: $globe-height
+
+  &.globe-loading
+    & > canvas
+      visibility: hidden
+
+
+.globe-loading-indicator
+  position: absolute
+  top: $globe-message-top
+  left: 0
+  right: 0
+  color: $white
+  font-weight: bold
+  text-align: center
+
+  .globe:not(.globe-loading) &
+    display: none
+
+
+.globe-loading-indicator-item
+  width: $loading-indicator-item-size
+  height: $loading-indicator-item-size
+  margin: 0 auto
+
+
+.globe-error
+  position: absolute
+  top: $globe-message-top
+  left: 0
+  right: 0
+  color: $red
+  font-weight: bold
+  text-align: center
