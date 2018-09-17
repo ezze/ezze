@@ -1,33 +1,13 @@
 import React from 'react';
 
+import Navbar from './Navbar';
 import Globe from './Globe';
 
 const App = () => {
     return (
         <div className="application">
-            <nav className="navbar navbar-expand-md navbar-dark bg-primary">
-                <div className="container">
-                    <a className="navbar-brand" href="/">www.ezze.org</a>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target=".navbar-content"
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="navbar-collapse collapse navbar-content">
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <a className="nav-link" href="https://github.com/ezze">Github</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="https://stackoverflow.com/users/506695/ezze">Stack Overflow</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            <Navbar />
+            <div className="navbar-gap"></div>
             <div className="jumbotron">
                 <div className="container">
                     <h1 className="display-3">Welcome!</h1>
@@ -40,7 +20,8 @@ const App = () => {
             <div className="restrictor"></div>
             <div className="container">
                 <div className="gap"></div>
-                <h1 className="display-4 text-center">Core skills</h1>
+                <a id="knowledges"></a>
+                <h1 className="display-4 text-center">Knowledges</h1>
                 <div className="gap-half"></div>
                 <div className="row">
                     <div className="col-lg">
@@ -109,6 +90,7 @@ const App = () => {
                     </div>
                 </div>
                 <div className="gap"></div>
+                <a id="projects"></a>
                 <h1 className="display-4 text-center">Projects</h1>
                 <div className="gap-half"></div>
                 <div className="row">
@@ -152,6 +134,7 @@ const App = () => {
                     </div>
                 </div>
                 <div className="gap"></div>
+                <a id="contributions"></a>
                 <h1 className="display-4 text-center">Contributions</h1>
                 <div className="row">
                     <div className="col-md">
@@ -171,6 +154,7 @@ const App = () => {
                         </ul>
                     </div>
                 </div>
+                <a id="contacts"></a>
                 <h1 className="display-4 text-center">Contacts</h1>
                 <p className="text-center">Phone: +7 (926) 034-94-43</p>
                 <p className="text-center">E-mail: ezze at ezze dot org</p>

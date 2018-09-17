@@ -10,7 +10,7 @@ $headings-color: $primary
 $jumbotron-bg: $secondary
 
 
-@import '~bootstrap/scss/bootstrap.scss'
+@import './sass/bootstrap'
 
 .jumbotron
   margin-bottom: 0
@@ -18,6 +18,7 @@ $jumbotron-bg: $secondary
 
 
 // Project specific variables
+$navbar-gap: 60px
 $gap-size: 40px
 $globe-height: 500px
 $globe-message-top: 128px
@@ -25,6 +26,17 @@ $loading-indicator-item-size: 64px
 
 
 // Project specific components
+a[id]
+  display: block
+  position: relative
+  top: -($navbar-gap + $gap-size / 2)
+  //margin-top: $navbar-gap
+
+
+.navbar-gap
+  height: $navbar-gap
+
+
 .gap
   height: $gap-size
 
