@@ -78,23 +78,25 @@ const App = () => {
                 </div>
                 <div className="row">
                     <div className="col-lg">
-                        <h3>Geo</h3>
+                        <h3>Geography</h3>
                         <ul>
                             <li>Cesium, Leaflet, OpenLayers</li>
                             <li>Yandex Maps API, Google Maps API</li>
                             <li>GDAL</li>
-                            <li>SGP4, QGIS</li>
                             <li>GeoServer, MapServer, WMS</li>
+                            <li>SGP4</li>
+                            <li>QGIS</li>
                         </ul>
                     </div>
                     <div className="col-lg">
-                        <h3>Additional</h3>
+                        <h3>Languages & tools</h3>
                         <ul>
-                            <li>PostgreSQL, MySQL</li>
+                            <li>Relational DBs (PostgreSQL, MySQL)</li>
                             <li>PHP (Yii framework)</li>
                             <li>Java (Android mobile, desktop, applets)</li>
                             <li>C/C++</li>
-                            <li>Regular expressions</li>
+                            <li>Apache web server, Apache JMeter</li>
+                            <li>Docker</li>
                         </ul>
                     </div>
                     <div className="col-lg">
@@ -149,6 +151,29 @@ const App = () => {
                         <div className="gap-half"></div>
                     </div>
                 </div>
+                <div className="gap"></div>
+                <h1 className="display-4 text-center">Contributions</h1>
+                <div className="row">
+                    <div className="col-md">
+                        <ul>
+                            <li><a href="https://github.com/shashwatak/satellite-js">satellite.js</a></li>
+                            <li><a href="https://github.com/AnalyticalGraphicsInc/cesium">cesium</a></li>
+                            <li><a href="https://github.com/arloliu/copy-node-modules">copy-node-modules</a></li>
+                            <li><a href="https://github.com/zinserjan/mocha-webpack">mocha-webpack</a></li>
+                        </ul>
+                    </div>
+                    <div className="col-md">
+                        <ul>
+                            <li><a href="https://github.com/ezze/cestbleu">cestbleu</a></li>
+                            <li><a href="https://github.com/ezze/dissemination">dissemination</a></li>
+                            <li><a href="https://github.com/ezze/merge-professor">merge-professor</a></li>
+                            <li><a href="https://github.com/ezze/html-element-size">html-element-size</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <h1 className="display-4 text-center">Contacts</h1>
+                <p className="text-center">Phone: +7 (926) 034-94-43</p>
+                <p className="text-center">E-mail: ezze at ezze dot org</p>
                 <div className="gap"></div>
             </div>
         </div>
