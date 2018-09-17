@@ -154,6 +154,7 @@ const App = () => {
                         </ul>
                     </div>
                 </div>
+                <div className="gap"></div>
                 <a id="contacts"></a>
                 <h1 className="display-4 text-center">Contacts</h1>
                 <p className="text-center">Phone: +7 (926) 034-94-43</p>
