@@ -9,7 +9,6 @@ class Navbar extends Component {
 
     componentDidMount() {
         $(this.navbarRef.current).find('.nav-link').on('click', () => {
-            console.log('here');
             $('.navbar-content').collapse('hide');
         });
     }
