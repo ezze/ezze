@@ -48,7 +48,9 @@ class App extends Component {
                     <div className="container">
                         <h1 className="display-3">Welcome!</h1>
                         <p className="lead">My name is Dmitriy Pushkov. I'm a full-stack web developer experienced in
-                            JavaScript (both browser and Node.js), PHP, React, HTML5, CSS and many more.</p>
+                            JavaScript (both browser and Node.js), React, HTML5, CSS, PHP and many more. I was working
+                            on GIS web, mobile and crossplatform desktop applications last few years.
+                        </p>
                     </div>
                 </div>
                 <div className="restrictor"></div>
@@ -108,7 +110,7 @@ class App extends Component {
                         <div className="col-lg">
                             <h3>Languages & tools</h3>
                             <ul>
-                                <li>Relational DBs (PostgreSQL, MySQL)</li>
+                                <li>Relational DB (PostgreSQL, MySQL)</li>
                                 <li>PHP (Yii framework)</li>
                                 <li>Java (Android mobile, desktop, applets)</li>
                                 <li>C/C++</li>
