@@ -4,6 +4,9 @@ import $ from 'jquery';
 import Navbar from './Navbar';
 import Globe from './Globe';
 
+import photoMainUrl from '../img/photo-main.jpg';
+import photoContactsUrl from '../img/photo-contacts.jpg';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -15,12 +18,12 @@ class App extends Component {
     componentDidMount() {
         this.$page = $('html, body');
         this.$page.on('scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove', this.onUserScroll);
-        $(this.appRef.current).on('click', 'a.nav-link[href^="#"]', this.onNavLinkClick);
+        $(this.appRef.current).on('click', 'a[href^="#"]', this.onNavLinkClick);
     }
 
     componentWillUnmount() {
         this.$page.off('scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove', this.onUserScroll);
-        $(this.appRef.current.off('click', 'a.nav-link[href^="#"]', this.onNavLinkClick));
+        $(this.appRef.current.off('click', 'a[href^="#"]', this.onNavLinkClick));
     }
 
     onNavLinkClick(event) {
@@ -47,10 +50,18 @@ class App extends Component {
                 <div className="jumbotron">
                     <div className="container">
                         <h1 className="display-3">Welcome!</h1>
-                        <p className="lead">My name is Dmitriy Pushkov. I'm a full-stack web developer experienced in
-                            JavaScript (both browser and Node.js), React, HTML5, CSS, PHP and many more. I was working
-                            on GIS web, mobile and crossplatform desktop applications last few years.
-                        </p>
+                        <div className="main-info">
+                            <div className="main-info-text">
+                                <p className="lead">My name is Dmitriy Pushkov. I'm a full-stack web developer experienced in
+                                    JavaScript (both browser and Node.js), React, HTML5, CSS, PHP and many more. I was working
+                                    on GIS web, mobile and cross-platform desktop applications last few years including
+                                    3D visualization of geospatial vector and raster data. See a list of my core
+                                    knowledges <a href="#knowledges">below</a>. If you're interested in collaboration
+                                    please <a href="#contacts">contact me</a>.
+                                </p>
+                            </div>
+                            <img className="main-info-photo" src={photoMainUrl} width="170" height="170" />
+                        </div>
                     </div>
                 </div>
                 <div className="restrictor"></div>
@@ -197,6 +208,7 @@ class App extends Component {
                     <h1 className="display-4 text-center">Contacts</h1>
                     <p className="text-center">Phone: +7 (926) 034-94-43</p>
                     <p className="text-center">E-mail: ezze at ezze dot org</p>
+                    <img className="contacts-photo" src={photoContactsUrl} width="500" height="616" />
                     <div className="gap"></div>
                 </div>
             </div>
