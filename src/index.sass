@@ -115,9 +115,15 @@ a[id]
   border: 2px solid $primary
   box-shadow: 1px 1px 4px $gray-600
 
+  @include media-breakpoint-down(md)
+    display: none
+
 
 .contacts-photo
   margin: 0 auto
   display: block
   border-radius: 6px
   box-shadow: 1px 1px 4px $gray-600
+
+  @include media-breakpoint-down(md)
+    display: none

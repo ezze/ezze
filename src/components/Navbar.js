@@ -15,7 +15,7 @@ class Navbar extends Component {
 
     render() {
         return (
-            <nav ref={this.navbarRef} className="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+            <nav ref={this.navbarRef} className="navbar navbar-expand-lg navbar-dark fixed-top bg-primary">
                 <div className="container">
                     <a className="navbar-brand" href="/">www.ezze.org</a>
                     <button
