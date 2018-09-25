@@ -77,7 +77,7 @@ export default {
                 loader: 'file-loader',
                 options: {
                     name: 'fonts/[1].[hash:6].[ext]',
-                    regExp: '([^./]+)\.[^.]+$'
+                    regExp: /([^./]+)\.[^.]+$/
                 }
             },
             include: [
@@ -89,7 +89,7 @@ export default {
                 loader: 'file-loader',
                 options: {
                     name: 'img/[1].[hash:6].[ext]',
-                    regExp: '([^./]+)\.[^.]+$'
+                    regExp: /([^./]+)\.[^.]+$/
                 }
             },
             include: [
@@ -101,7 +101,7 @@ export default {
                 loader: 'gltf-loader-2',
                 options: {
                     name: 'gltf/[1].[hash:6].[ext]',
-                    regExp: '([^./]+)\.[^.]+$'
+                    regExp: /([^./]+)\.[^.]+$/
                 }
             },
             include: [
@@ -113,7 +113,7 @@ export default {
                 loader: 'file-loader',
                 options: {
                     name: 'gltf/[1].[hash:6].[ext]',
-                    regExp: '([^./]+)\.[^.]+$'
+                    regExp: /([^./]+)\.[^.]+$/
                 }
             },
             include: [
@@ -133,6 +133,10 @@ export default {
             }
         },
         runtimeChunk: true
+    },
+    performance: {
+        maxEntrypointSize: 1024 * 1024,
+        maxAssetSize: 1024 * 1024
     },
     plugins: [
         new webpack.NoEmitOnErrorsPlugin(),
@@ -169,8 +173,5 @@ export default {
             }
         })
     ],
-    performance: {
-        maxEntrypointSize: 1024 * 1024
-    },
     devtool: mode === 'development' ? 'source-map' : false
 };
