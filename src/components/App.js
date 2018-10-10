@@ -81,7 +81,7 @@ class App extends Component {
                                 <li>Backbone, Marionette</li>
                                 <li>Electron</li>
                                 <li>ES6, promises</li>
-                                <li>Unit testing (Mocha, Chai)</li>
+                                <li>Jest, Enzyme, Mocha, Chai</li>
                             </ul>
                         </div>
                         <div className="col-lg">
