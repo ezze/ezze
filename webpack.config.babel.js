@@ -152,7 +152,7 @@ export default (env, argv) => {
                 filename: path.resolve(__dirname, 'dist/index.html'),
                 inject: false,
                 template: htmlTemplate,
-                title: 'Ezze',
+                title: packageJson.description,
                 meta: [{
                     name: 'viewport',
                     content: 'width=device-width,initial-scale=1,shrink-to-fit=no'

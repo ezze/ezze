@@ -1,7 +1,7 @@
 {
   "name": "ezze",
   "version": "1.0.0",
-  "description": "Personal developer page",
+  "description": "Personal page of full-stack web developer Dmitriy Pushkov",
   "main": "index.js",
   "scripts": {
     "dist": "rimraf dist && webpack --mode production",
