@@ -77,7 +77,7 @@ class App extends Component {
                             <h3>JavaScript</h3>
                             <ul>
                                 <li>Node.js (Koa, Express, Sequelize ORM)</li>
-                                <li>React, Redux</li>
+                                <li>React, Redux, MobX</li>
                                 <li>Backbone, Marionette</li>
                                 <li>Electron</li>
                                 <li>ES6, promises</li>
