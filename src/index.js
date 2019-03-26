@@ -7,9 +7,9 @@ import './index.sass';
 import App from './components/App';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const rootElement = document.querySelector('#root');
-    render(
-        <App />,
-        rootElement
-    );
+  const rootElement = document.querySelector('#root');
+  render(
+    <App />,
+    rootElement
+  );
 });

@@ -8,6 +8,7 @@
     "dist:dev": "rimraf dist && webpack --mode development",
     "wds": "webpack-dev-server --progress --mode production",
     "wds:dev": "webpack-dev-server --progress --mode development",
+    "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,7 +19,7 @@
     "ezze"
   ],
   "author": "Dmitriy Pushkov <ezze@ezze.org>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ezze/ezze/issues"
   },
@@ -34,7 +35,7 @@
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-loading": "^2.0.3",
-    "three": "^0.99.0",
+    "three": "^0.102.1",
     "three-gltf-loader": "^1.99.0"
   },
   "devDependencies": {
@@ -44,9 +45,12 @@
     "@babel/register": "^7.0.0",
     "autoprefixer": "^9.3.1",
     "babel-loader": "^8.0.4",
-    "css-loader": "^1.0.1",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.15.3",
+    "eslint-config-ezze-react": "^0.7.0",
+    "eslint-plugin-react": "^7.12.4",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "file-loader": "^2.0.0",
+    "file-loader": "^3.0.1",
     "gltf-loader-2": "^0.0.3",
     "html-webpack-plugin": "^3.2.0",
     "html-webpack-template": "^6.2.0",
