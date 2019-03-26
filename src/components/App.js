@@ -88,7 +88,7 @@ class App extends Component {
             <div className="col-lg">
               <h3>Build tools</h3>
               <ul>
-                <li>NPM, Yarn</li>
+                <li>NPM, Yarn, Lerna, Verdaccio</li>
                 <li>Webpack</li>
                 <li>Rollup</li>
                 <li>Gulp</li>
