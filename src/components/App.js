@@ -92,7 +92,7 @@ class App extends Component {
                 <li>Webpack, Rollup</li>
                 <li>Gulp, Grunt</li>
                 <li>Require.js & Almond</li>
-                <li>Gitlab CI & Travis CI</li>
+                <li>Gitlab CI, Travis CI</li>
                 <li>NSIS</li>
               </ul>
             </div>
@@ -126,16 +126,16 @@ class App extends Component {
                 <li>PHP (Yii framework)</li>
                 <li>Java (Android mobile, desktop, applets)</li>
                 <li>C/C++</li>
-                <li>Apache web server, Apache JMeter</li>
+                <li>Nginx, Apache web server</li>
                 <li>Docker</li>
               </ul>
             </div>
             <div className="col-lg">
               <h3>Environment</h3>
               <ul>
-                <li>Ubuntu Linux, Windows</li>
+                <li>Ubuntu, Ubuntu Touch, Windows</li>
                 <li>Git</li>
-                <li>PhpStorm, WebStorm, Android Studio</li>
+                <li>WebStorm, PhpStorm, Android Studio</li>
               </ul>
             </div>
           </div>
