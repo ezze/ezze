@@ -3,7 +3,7 @@ import Promise from 'bluebird';
 import React, { Component } from 'react';
 import Loading from 'react-loading';
 import * as THREE from 'three';
-import GLTFLoader from 'three-gltf-loader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import MobileDetect from 'mobile-detect';
 
 import earthTextureUrl from '../img/earth.jpg';
@@ -95,9 +95,6 @@ class Globe extends Component {
     scene.add(light);
 
     scene.add(new THREE.AmbientLight(0x888888, 0.5));
-
-    // const cameraHelper = new THREE.CameraHelper(light.shadow.camera);
-    // scene.add(cameraHelper);
 
     Promise.all([
       createStars(),
@@ -243,17 +240,6 @@ function loadEarthTexture() {
 function loadStarsTexture() {
   return loadTexture(starsTextureUrl);
 }
-
-/*
-function loadGltfModel(url) {
-  const loader = new GLTFLoader();
-  return new Promise((resolve, reject) => {
-    loader.load(url, gltf => {
-      resolve(gltf.scene);
-    }, undefined, error => reject(error));
-  });
-}
-*/
 
 function parseGltfModel(contents) {
   const loader = new GLTFLoader();
