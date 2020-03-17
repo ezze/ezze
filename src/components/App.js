@@ -78,21 +78,21 @@ class App extends Component {
               <h3>JavaScript</h3>
               <ul>
                 <li>Node.js (Koa, Express, Sequelize ORM)</li>
-                <li>React, Redux, MobX</li>
+                <li>React, MobX, Redux</li>
                 <li>Backbone, Marionette</li>
                 <li>Electron</li>
                 <li>ES6, promises</li>
-                <li>Jest, Enzyme, Mocha, Chai</li>
+                <li>Jest, Enzyme, Mocha, Chai, Puppeteer</li>
               </ul>
             </div>
             <div className="col-lg">
               <h3>Build tools</h3>
               <ul>
                 <li>NPM, Yarn, Lerna, Verdaccio</li>
-                <li>Webpack</li>
-                <li>Rollup</li>
-                <li>Gulp</li>
-                <li>Grunt</li>
+                <li>Webpack, Rollup</li>
+                <li>Gulp, Grunt</li>
+                <li>Require.js & Almond</li>
+                <li>Gitlab CI & Travis CI</li>
                 <li>NSIS</li>
               </ul>
             </div>
@@ -143,6 +143,26 @@ class App extends Component {
           <a id="projects"></a>
           <h1 className="display-4 text-center">Projects</h1>
           <div className="gap-half"></div>
+          <div className="row">
+            <div className="col-lg">
+              <h3>GeoMonitor & GeoBase</h3>
+              <div className="embed-responsive embed-responsive-16by9">
+                <iframe src="https://www.youtube.com/embed/3rXgMri8W2Q?&vq=hd1080" frameBorder="0"
+                  allow="autoplay; encrypted-media" allowFullScreen>
+                </iframe>
+              </div>
+              <div className="gap-half"></div>
+            </div>
+            <div className="col-lg">
+              <h3>Geography Game</h3>
+              <div className="embed-responsive embed-responsive-16by9">
+                <iframe src="https://www.youtube.com/embed/N5FtvH5ixxs?&vq=hd1080" frameBorder="0"
+                  allow="autoplay; encrypted-media" allowFullScreen>
+                </iframe>
+              </div>
+              <div className="gap-half"></div>
+            </div>
+          </div>
           <div className="row">
             <div className="col-lg">
               <h3>GeoPort & GeoMonitor</h3>
@@ -198,6 +218,7 @@ class App extends Component {
             <div className="col-md">
               <ul>
                 <li><a href="https://github.com/ezze/cestbleu">cestbleu</a></li>
+                <li><a href="https://github.com/ezze/storekeeper">storekeeper</a></li>
                 <li><a href="https://github.com/ezze/dissemination">dissemination</a></li>
                 <li><a href="https://github.com/ezze/merge-professor">merge-professor</a></li>
                 <li><a href="https://github.com/ezze/html-element-size">html-element-size</a></li>
