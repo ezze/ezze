@@ -32,10 +32,13 @@ class Navbar extends Component {
                 <a className="nav-link" href="#knowledges">Knowledges</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#projects">Projects</a>
+                <a className="nav-link" href="#videos">Video demos</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#contributions">Contributions</a>
+                <a className="nav-link" href="#live">Live demos (games)</a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="#opensource">Open source</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#contacts">Contacts</a>

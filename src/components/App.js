@@ -81,8 +81,8 @@ class App extends Component {
                 <li>React, MobX, Redux</li>
                 <li>Backbone, Marionette</li>
                 <li>Electron</li>
-                <li>ES6, promises</li>
-                <li>Jest, Enzyme, Mocha, Chai, Puppeteer</li>
+                <li>ES6, promises, web sockets</li>
+                <li>Jest, Enzyme, Mocha, Codecov, Puppeteer</li>
               </ul>
             </div>
             <div className="col-lg">
@@ -92,7 +92,7 @@ class App extends Component {
                 <li>Webpack, Rollup</li>
                 <li>Gulp, Grunt</li>
                 <li>Require.js & Almond</li>
-                <li>Gitlab CI, Travis CI</li>
+                <li>CI (Gitlab CI, Travis CI, Circle CI)</li>
                 <li>NSIS</li>
               </ul>
             </div>
@@ -140,23 +140,28 @@ class App extends Component {
             </div>
           </div>
           <div className="gap"></div>
-          <a id="projects"></a>
-          <h1 className="display-4 text-center">Projects</h1>
+          <a id="videos"></a>
+          <h1 className="display-4 text-center">Video demos</h1>
+          <p className="text-center">
+            Below are videos demonstrating my work during last five years. It's mainly dedicated to geospatial related
+            projects built from scratch with the following stack: React, Mobx (Redux previously), Node.js, TypeScript,
+            PostgreSQL/PostGIS, HTML5/CSS3.
+          </p>
           <div className="gap-half"></div>
           <div className="row">
             <div className="col-lg">
               <h3>GeoMonitor & GeoBase</h3>
               <div className="embed-responsive embed-responsive-16by9">
-                <iframe src="https://www.youtube.com/embed/3rXgMri8W2Q?&vq=hd1080" frameBorder="0"
+                <iframe src="https://www.youtube.com/embed/DyxC9uPo6wg?&vq=hd1080" frameBorder="0"
                   allow="autoplay; encrypted-media" allowFullScreen>
                 </iframe>
               </div>
               <div className="gap-half"></div>
             </div>
             <div className="col-lg">
-              <h3>Geography Game</h3>
+              <h3>GeoMonitor & GeoBase (2020)</h3>
               <div className="embed-responsive embed-responsive-16by9">
-                <iframe src="https://www.youtube.com/embed/N5FtvH5ixxs?&vq=hd1080" frameBorder="0"
+                <iframe src="https://www.youtube.com/embed/3rXgMri8W2Q?&vq=hd1080" frameBorder="0"
                   allow="autoplay; encrypted-media" allowFullScreen>
                 </iframe>
               </div>
@@ -203,22 +208,75 @@ class App extends Component {
               <div className="gap-half"></div>
             </div>
           </div>
-          <div className="gap"></div>
-          <a id="contributions"></a>
-          <h1 className="display-4 text-center">Contributions</h1>
           <div className="row">
+            <div className="col-lg">
+              <h3>Geography Game</h3>
+              <div className="embed-responsive embed-responsive-16by9">
+                <iframe src="https://www.youtube.com/embed/N5FtvH5ixxs?&vq=hd1080" frameBorder="0"
+                  allow="autoplay; encrypted-media" allowFullScreen>
+                </iframe>
+              </div>
+              <div className="gap-half"></div>
+            </div>
+            <div className="col-lg">
+              <h3>Math Hunger Game</h3>
+              <div className="embed-responsive embed-responsive-16by9">
+                <iframe src="https://www.youtube.com/embed/H9rE190cjVk?&vq=hd1080" frameBorder="0"
+                  allow="autoplay; encrypted-media" allowFullScreen>
+                </iframe>
+              </div>
+              <div className="gap-half"></div>
+            </div>
+          </div>
+          <div className="gap"></div>
+          <a id="live"></a>
+          <h1 className="display-4 text-center">Live demos (games)</h1>
+          <p className="text-center">These games are written for my kids and just for fun:</p>
+          <div className="row row-live">
             <div className="col-md">
               <ul>
-                <li><a href="https://github.com/shashwatak/satellite-js">satellite.js</a></li>
-                <li><a href="https://github.com/AnalyticalGraphicsInc/cesium">cesium</a></li>
-                <li><a href="https://github.com/arloliu/copy-node-modules">copy-node-modules</a></li>
-                <li><a href="https://github.com/zinserjan/mocha-webpack">mocha-webpack</a></li>
+                <li><a href="https://storekeeper.yellowberry.ru">Storekeeper</a></li>
+                <li><a href="https://geography.yellowberry.ru">Geography</a></li>
               </ul>
             </div>
             <div className="col-md">
               <ul>
-                <li><a href="https://github.com/ezze/cestbleu">cestbleu</a></li>
+                <li><a href="https://mh.yellowberry.ru">Math Hunger</a></li>
+                <li><a href="https://math.yellowberry.ru">Math</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="gap"></div>
+          <a id="opensource"></a>
+          <h1 className="display-4 text-center">Open source</h1>
+          <p className="text-center">
+            Here are the links to some open source projects I contributed to and
+            a few simple own libraries I can share:
+          </p>
+          <div className="row">
+            <div className="col-lg">
+              <ul>
+                <li><a href="https://github.com/shashwatak/satellite-js">satellite.js</a></li>
+                <li><a href="https://github.com/AnalyticalGraphicsInc/cesium">cesium</a></li>
+                <li><a href="https://github.com/arloliu/copy-node-modules">copy-node-modules</a></li>
+              </ul>
+            </div>
+            <div className="col-lg">
+              <ul>
                 <li><a href="https://github.com/ezze/storekeeper">storekeeper</a></li>
+                <li><a href="https://github.com/ezze/math-hunger">math-hunger</a></li>
+                <li><a href="https://github.com/ezze/geography">geography</a></li>
+              </ul>
+            </div>
+            <div className="col-lg">
+              <ul>
+                <li><a href="https://github.com/ezze/cestbleu">cestbleu</a></li>
+                <li><a href="https://github.com/ezze/node-raise-version">raise-version</a></li>
+                <li><a href="https://github.com/ezze/node-perfect-json">perfect-json</a></li>
+              </ul>
+            </div>
+            <div className="col-lg">
+              <ul>
                 <li><a href="https://github.com/ezze/dissemination">dissemination</a></li>
                 <li><a href="https://github.com/ezze/merge-professor">merge-professor</a></li>
                 <li><a href="https://github.com/ezze/html-element-size">html-element-size</a></li>
